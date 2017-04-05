@@ -79,7 +79,7 @@ export function getCollectionDays(address: string, cb: (err: Error | undefined, 
             }
 
             cb(undefined, days.map(day => ({
-                date: day.status,
+                date: day.start,
                 foodAndYardWaste: day.FoodAndYardWaste,
                 garbage: day.Garbage,
                 recycling: day.Recycling

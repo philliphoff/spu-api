@@ -1,12 +1,12 @@
 {
   "name": "spu-api",
   "version": "1.0.0",
-  "description": "",
+  "description": "A Node.js library for Seattle Public Utilities web services.",
   "main": "lib/Index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "author": {
+    "name": "Phillip Hoff",
+    "email": "phillip@orst.edu"
   },
-  "author": "",
   "license": "ISC",
   "devDependencies": {
     "@types/request": "0.0.42",
