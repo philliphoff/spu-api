@@ -13,7 +13,7 @@ A Node.js library for Seattle Public Utilities web services.
 
 Each collection day object has the following properties:
 
- - `date`: (string) The day's date. 
+ - `date`: (Date) The day's date. 
  - `foodAndYardWaste`: (boolean) True if food and yard waste bins will be collected.
  - `garbage`: (boolean) True if garbage bins will be collected.
  - `recycling`: (boolean) True if recycling bins will be collected.

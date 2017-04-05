@@ -61,7 +61,7 @@ function getWarpCollectionDays(address: string, cb: (err: Error | undefined, day
 }
 
 export interface ICollectionDay {
-    date: string;
+    date: Date;
     foodAndYardWaste: boolean;
     garbage: boolean;
     recycling: boolean;
@@ -79,7 +79,7 @@ export function getCollectionDays(address: string, cb: (err: Error | undefined, 
             }
 
             cb(undefined, days.map(day => ({
-                date: day.start,
+                date: new Date(day.start),
                 foodAndYardWaste: day.FoodAndYardWaste,
                 garbage: day.Garbage,
                 recycling: day.Recycling
