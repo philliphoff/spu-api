@@ -1,4 +1,7 @@
+import * as debug from 'debug';
 import * as request from 'request';
+
+const spuApiDebug = debug('spu:api');
 
 function getWarpAddress(address: string, cb: (err: Error | undefined, address: string) => void): void {
     const options = {
@@ -13,12 +16,25 @@ function getWarpAddress(address: string, cb: (err: Error | undefined, address: s
         url: 'http://www.seattle.gov/UTIL/WARP/Home/GetAddress'
     };
 
+    spuApiDebug('Getting WARP address: %O', options);
+
     request(options, (err, res, body) => {
         if (err) {
+            spuApiDebug('Unable to get address: %O', err);
+
             return cb(err, undefined);
         }
 
-        cb(undefined, body[0]);
+        spuApiDebug('Got address: %O', body);
+
+        if (body && body.length) {
+            cb(undefined, body[0]);
+        }
+        else {
+            const message = 'Got an unexpected address.';
+            spuApiDebug(message);
+            cb(new Error(message), undefined);
+        }
     });
 }
 
@@ -51,12 +67,18 @@ function getWarpCollectionDays(address: string, cb: (err: Error | undefined, day
         url: 'http://www.seattle.gov/UTIL/WARP/CollectionCalendar/GetCollectionDays'
     };
 
+    spuApiDebug('Getting WARP collection days: %O', options);
+
     request(options, (err, res, body) => {
         if (err) {
+            spuApiDebug('Unable to get collection days: %O', err);
+
             return cb(err, undefined);
         }
 
-        cb(undefined, body);
+        spuApiDebug('Got collection days: %O', body);
+
+        cb(undefined, body || []);
     });
 }
 
